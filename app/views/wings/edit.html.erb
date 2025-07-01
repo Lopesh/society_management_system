@@ -1,0 +1,12 @@
+<% content_for :title, "Editing wing" %>
+
+<h1>Editing wing</h1>
+
+<%= render "form", wing: @wing %>
+
+<br>
+
+<div>
+  <%= link_to "Show this wing", @wing %> |
+  <%= link_to "Back to wings", wings_path %>
+</div>

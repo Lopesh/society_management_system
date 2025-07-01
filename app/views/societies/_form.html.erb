@@ -1,0 +1,80 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <section class="p-4 border rounded shadow-sm bg-light">
+        <h4 class="mb-3 text-center">Society Registration</h4>
+
+        <%= form_with(model: society) do |form| %>
+          <% if society.errors.any? %>
+            <div class="alert alert-danger">
+              <h5><%= pluralize(society.errors.count, "error") %> prohibited this society from being saved:</h5>
+              <ul>
+                <% society.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="row g-3">
+            <section>
+              <div class="col-12 mb-3">
+                <label class="form-label">Name</label>
+                <%= form.text_field :name, class: "form-control" %>
+                <div class="invalid-feedback">
+                  Valid name is required.
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="col-12 mb-3">
+                <label class="form-label">Subdomain</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text">@</span>
+                  <%= form.text_field :subdomain, class: "form-control" %>
+                  <div class="invalid-feedback">
+                    Your subdomain is required.
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="col-12 mb-3">
+                <label class="form-label">Email <span class="text-muted">(Optional)</span></label>
+                <%= form.email_field :contact_email, class: "form-control" %>
+                <div class="invalid-feedback">
+                  Please enter a valid email address.
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="col-12 mb-3">
+                <label class="form-label">Address</label>
+                <%= form.text_field :address, class: "form-control" %>
+                <div class="invalid-feedback">
+                  Please enter address.
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="col-12 mb-3">
+                <label class="form-label">Phone</label>
+                <%= form.text_field :phone, class: "form-control" %>
+              </div>
+            </section>
+
+            <div class="col-12">
+              <button class="w-100 btn btn-primary btn-lg" type="submit">
+                Register
+              </button>
+            </div>
+          </div>
+        <% end %>
+      </section>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<%# --- Card Body Section --- %>
+<% content_for :show_card_body do %>
+  <% user_presenter = UserPresenter.new(@user)%>
+  <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-4">Name</dt>
+      <dd class="col-sm-8"><%= user_presenter.display_text(@user.name) %></dd>
+    </dl>
+  </div>
+<% end %>
+
+<%# --- Card Footer Section --- %>
+<% content_for :show_card_footer do %>
+  <%= link_to "Edit Wing", edit_user_path(@user), class: "btn btn-outline-primary" %>
+  <%= link_to "Back to Users", users_path, class: "btn btn-secondary" %>
+  <%= button_to "Destroy User", @user, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+<% end %>
+
+<%= render "layouts/view_template", header: "User Details"%>

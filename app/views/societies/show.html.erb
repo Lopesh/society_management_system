@@ -1,0 +1,52 @@
+<%# --- Card Body Section --- %>
+<% content_for :show_card_body do %>
+  <% society_presenter = SocietyPresenter.new(@society)%>
+  <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-4">Name</dt>
+      <dd class="col-sm-8"><%= society_presenter.display_text(@society.name) %></dd>
+
+      <dt class="col-sm-4">Subdomain</dt>
+      <dd class="col-sm-8"><%= society_presenter.display_text(@society.subdomain)%></dd>
+
+      <dt class="col-sm-4">Contact Email</dt>
+      <dd class="col-sm-8"><%= society_presenter.display_text(@society.contact_email) %></dd>
+
+      <dt class="col-sm-4">Address</dt>
+      <dd class="col-sm-8"><%= society_presenter.display_text(@society.address) %></dd>
+
+      <dt class="col-sm-4">Phone</dt>
+      <dd class="col-sm-8"><%= society_presenter.display_text(@society.phone) %></dd>
+    </dl>
+  </div>
+<% end %>
+
+<%# --- Card Footer Section --- %>
+<% content_for :show_card_footer do %>
+  <%= link_to "Edit Society", edit_society_path(@society), class: "btn btn-outline-primary" %>
+  <%= link_to "Back to Societies", societies_path, class: "btn btn-secondary" %>
+  <%= button_to "Destroy Society", @society, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+<% end %>
+
+
+
+<%# --- Datatable Header Section --- %>
+<% content_for :datatable_header do %>
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Member Count</th>
+  </tr>
+<% end %>
+
+<%# --- Datatable Body Section --- %>
+<% content_for :datatable_body do %>
+  <% @wings.each_with_index do |wing, index| %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= wing.name %></td>
+      <td><%= wing.users.count %></td>
+    </tr>
+  <% end %>
+<% end %>
+<%= render "layouts/view_template", header: "Society Details", table_header: "Wing" , new_record_path: new_wing_path(society_id: @society.id), is_new_button_visible: true %>

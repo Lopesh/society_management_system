@@ -1,0 +1,20 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0"><%= header %></h4>
+        </div>
+        <div class="card-body">
+          <%= yield :show_card_body %>
+        </div>
+        <div class="card-footer d-flex justify-content-center gap-2 flex-wrap">
+          <%= yield :show_card_footer %>
+        </div>
+      </div>
+      
+        <%= render "layouts/datatable", header: table_header, new_record_path: new_record_path, is_new_button_visible: is_new_button_visible %>
+      
+    </div>
+  </div>
+</div>

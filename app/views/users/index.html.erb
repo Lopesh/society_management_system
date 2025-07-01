@@ -1,0 +1,23 @@
+<% content_for :datatable_header do %>
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Wing</th>
+    <th>Phone</th>
+  </tr>
+<% end %>
+
+<% content_for :datatable_body do %>
+  <% @users.each_with_index do |user, index| %>
+    <% user_presenter = UserPresenter.new(user) %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= user.name %></td>
+      <td><%= user_presenter.display_text(user.email) %></td>
+      <td><%= user_presenter.display_text(user.wing&.name) %></td>
+      <td><%= user_presenter.display_text(user.phone) %></td>
+    </tr>
+  <% end %>
+<% end %>
+<%= render 'layouts/datatable', header: "User", new_record_path: new_user_path, is_new_button_visible: current_user.admin? %>

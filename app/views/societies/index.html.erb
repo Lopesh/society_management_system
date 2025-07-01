@@ -1,0 +1,27 @@
+<% content_for :datatable_header do %>
+  <tr>
+    <th>#</th>
+    <th>ID</th>
+    <th>Society Name</th>
+    <th>subdomain</th>
+    <th>Address</th>
+    <th>Contact Email</th>
+    <th>Phone Number</th>
+  </tr>
+<% end %>
+
+<% content_for :datatable_body do %>
+  <% @societies.each_with_index do |society, index| %>
+    <% society_presenter = SocietyPresenter.new(society) %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= link_to society.id, society_path(society) %></td>
+      <td><%= society.name %></td>
+      <td><%= society.subdomain %></td>
+      <td><%= society_presenter.display_text(society.address) %></td>
+      <td><%= society_presenter.display_text(society.contact_email) %></td>
+      <td><%= society_presenter.display_text(society.phone) %></td>
+    </tr>
+  <% end %>
+<% end %>
+<%= render 'layouts/datatable', header: "Society", new_record_path: new_society_path, is_new_button_visible: true %>
